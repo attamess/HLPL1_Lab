@@ -39,7 +39,7 @@ void add_day(Date& dd, int n) {
 
 void version1() {
   using namespace Version1;
-  cout << "Version 1 - Chapter 9.4.1" <<endl;
+  cout << "\tVersion 1 - Chapter 9.4.1" <<endl;
   Date today;
   init_day(today, 1978, 6, 25);
   cout << "Today: "<<today << endl;
@@ -88,7 +88,7 @@ ostream& operator<<(ostream& os, const Date& date) {
 
 void version2() {
   using namespace Version2;
-  cout<<"Version 2 - Chapter 9.4.2\n";
+  cout<<"\tVersion 2 - Chapter 9.4.2\n";
   Date today {1978, 6, 25};
   cout << "Today: "<< today << endl;
   Date tomorrow = today;
@@ -139,7 +139,7 @@ ostream& operator<<(ostream& os, Date& date) {
 
 void version3() {
   using namespace Version3;
-  cout << "Version 3 - Chapter 9.4.3\n";
+  cout << "\tVersion 3 - Chapter 9.4.3\n";
   Date today {1978, 6, 25};
   cout << "Today: "<< today << endl;
   cout << "Month: " << today.month() << endl;
@@ -218,13 +218,13 @@ namespace Version4 {
 
 void version4() {
   using namespace Version4;
-  cout << "Version 4 - Chapter 9.7.1" << endl;
+  cout << "\tVersion 4 - Chapter 9.7.1" << endl;
   Date today {1978, Month::jun, 25};
   cout << "Today: "<< today << endl;
   cout << "Month: " << today.month() << endl;
   Date tomorrow = today;
   tomorrow.add_day(1);
-  cout << "Tomorrow: "<< tomorrow << endl;
+  cout << "\nTomorrow: "<< tomorrow << endl;
   Date check {2005, Month::dec, 31};
   check.add_day(3);
   cout << check << endl;
@@ -253,6 +253,10 @@ namespace Version5 {
   Month operator++(Month& m){
     m = (m == Month::dec) ? Month::jan : Month(int(m)+1);
     return m;
+  };
+  Month operator+(Month& m, int n) {
+    if (m == Month::dec) { m = Month::jan; --n; }
+    return Month(int(m)+n);
   }
 
 
@@ -280,14 +284,20 @@ namespace Version5 {
 
   void Date::add_day(int n) {
     d+=n;
-    if(d>31) {
-      ++m;
-      d -= 31;
-      if (m==Month::jan)
-       { ++y; }
-  }
+   if(d>31) {
+     ++m;
+     d -= 31;
+     if (m==Month::jan)
+      { ++y; }
+    }
+    if (d>31) error("add_day() results in invalid date!");
   };
 
+  void Date::add_month(int n) {
+    while (n>12) { ++y; n -=12; } //if more than 12 months, count how many years
+    if (n==12) { ++y; n -= 11; } //if 12 months
+    m = m + n;
+  };
 
   void Date::add_year(int n) {
     y+=n;
@@ -306,7 +316,7 @@ namespace Version5 {
 
 void version5() {
   using namespace Version5;
-  cout << "Version 5 - Chapter 9.7.4" << endl;;
+  cout << "\tVersion 5 - Chapter 9.7.4" << endl;;
   Date d_default;
   cout << "Default date: " << d_default << endl;
   Date today {1978, Month::jun, 25};
@@ -314,12 +324,16 @@ void version5() {
   cout << "Month: " << today.month() << endl;
   Date tomorrow = today;
   tomorrow.add_day(1);
-  cout << "Tomorrow: " << tomorrow << endl;
+  cout << "\nTomorrow: " << tomorrow << endl;
+  Date next_month = today;
+  next_month.add_month(1);
+  cout << "Next month: " <<next_month << endl;
   Date next_year = today;
   next_year.add_year(1);
   cout << "Next year: " << next_year << endl;
-  Date check {2005, Month::dec, -31};
+  Date check {2005, Month::dec, 31};
   check.add_day(3);
+  //check.add_month(28);
   cout << check << endl;
 }
 
