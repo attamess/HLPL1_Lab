@@ -47,10 +47,10 @@ void version1() {
   tomorrow = today;
   add_day(tomorrow, 1);
   cout << "Tomorrow: "<< tomorrow << endl;
-  Date check;
-  init_day(check, 2005, 12, 31);
-  add_day(check, 3);
-  cout << check << endl;
+  Date d_check;
+  init_day(d_check, 2021, 12, 27);
+  add_day(d_check, 7);
+  cout << d_check << endl;
 }
 
         //Version 2 - Chapter 9.4.2
@@ -94,9 +94,9 @@ void version2() {
   Date tomorrow = today;
   tomorrow.add_day(1);
   cout << "Tomorrow: "<<tomorrow << endl;
-  Date check {2005, 12, 31};
-  check.add_day(3);
-  cout << check << endl;
+  Date d_check {2021, 12, 27};
+  d_check.add_day(7);
+  cout << d_check << endl;
 }
 
         //Version 3 - Chapter 9.4.3
@@ -146,9 +146,9 @@ void version3() {
   Date tomorrow = today;
   tomorrow.add_day(1);
   cout << "Tomorrow: "<< tomorrow << endl;
-  Date check {2005, 12, 31};
-  check.add_day(3);
-  cout << check << endl;
+  Date d_check {2021, 12, 27};
+  d_check.add_day(7);
+  cout << d_check << endl;
 }
 
         //Version 4 - Chapter 9.7.1
@@ -225,9 +225,9 @@ void version4() {
   Date tomorrow = today;
   tomorrow.add_day(1);
   cout << "\nTomorrow: "<< tomorrow << endl;
-  Date check {2005, Month::dec, 31};
-  check.add_day(3);
-  cout << check << endl;
+  Date d_check {2021, Month::dec, 27};
+  d_check.add_day(7);
+  cout << d_check << endl;
 }
 
         //Version 5 - Chapter 9.7.4
@@ -331,10 +331,10 @@ void version5() {
   Date next_year = today;
   next_year.add_year(1);
   cout << "Next year: " << next_year << endl;
-  Date check {2005, Month::dec, 31};
-  check.add_day(3);
-  //check.add_month(28);
-  cout << check << endl;
+  Date d_check {2021, Month::dec, 27};
+  d_check.add_day(7);
+  d_check.add_month(28);
+  cout << d_check << endl;
 }
 
 int main()
