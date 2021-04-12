@@ -14,14 +14,14 @@ bool operator!=(const Point& p1, const Point& p2) { //declare != operator for po
  return !(p1==p2);
 }
 
-istream& operator>>(istream& is, Point& p) {
+istream& operator>>(istream& is, Point& p) { //istream deals with streams of input
   int x, y;
   char ch1, ch2, ch3;
 
   is >> ch1>> x >> ch2 >> y >> ch3;
   if (!is) return is;
   if (ch1 != '(' || ch2 != ',' || ch3 != ')') {
-    is.clear(ios_base::failbit);
+    is.clear(ios_base::failbit); //set the state to fail()
     return is;
   }
 
@@ -29,7 +29,7 @@ istream& operator>>(istream& is, Point& p) {
   return is;
 };
 
-ostream& operator<<(ostream& os, const Point& p) {
+ostream& operator<<(ostream& os, const Point& p) { //ostream deals with streams of output
   return os << '(' << p.x << ',' << p.y << ')';
 };
 
