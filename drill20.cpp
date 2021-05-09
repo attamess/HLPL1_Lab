@@ -108,11 +108,14 @@ int main()
   v_it = find(v.begin(), v.end(), 3);
   if(v_it != v.end())
     cout << "Vector contains the value 3 and its index is " << v_it-v.begin() << endl;
+  else
+    cout << "3 was not found in the vector." << endl;
 
   list<int>::iterator l_it = find(l.begin(), l.end(), 27);
   if (l_it != l.end())
-  { int index = 0;
-    for(list<int>::iterator iter = l.begin(); iter != l_it; ++iter)
+  {
+    int index = 0;
+    for(list<int>::iterator p = l.begin();  p!= l_it; ++p)
       ++index;
     cout << "List contains the value 27 and its position is " << index << endl;
   }
