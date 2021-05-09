@@ -42,7 +42,7 @@ cout << "Question - 2" << endl;
 cout << "\nQuestion - 5" << endl;
   int* b = new int[10];
   for(int i = 0; i<10; ++i)
-    a[i] = 100 + i;
+    b[i] = 100 + i;
   print_array10(cout, b); //4
   delete[] b;
 
@@ -50,7 +50,7 @@ cout << "\nQuestion - 5" << endl;
 cout << "\nQuestion - 6" << endl;
 int* c = new int[11];
 for(int i = 0; i<11; ++i)
-  a[i]=100+i;
+  c[i] = 100+i;
 print_array(cout, c, 11); //7
 delete[] c;
 
@@ -58,7 +58,7 @@ delete[] c;
 cout << "\nQuestion - 8" <<endl;
 int* d = new int[20];
 for(int i = 0; i<20; ++i)
-  a[i] = 100 + i;
+  d[i] = 100 + i;
 print_array(cout, d, 20);
 delete[] d;
 
